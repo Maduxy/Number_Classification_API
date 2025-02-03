@@ -1,0 +1,5 @@
+fastapi[standard]
+uvicorn   
+fastapi-cors
+sympy
+requests
