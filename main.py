@@ -17,16 +17,16 @@ NUMBERS_API_URL = "http://numbersapi.com"
 def mth_num(number:int):
 
     if number < 0:
-        # raise HTTPException(status_code=400, detail="Number must be a positive integer.")
         return JSONResponse(
         status_code=400,
-        content={"number": "alphabet","error": "true"},
+        content={"number": "alphabet","error": true},
         )
-    
+   
+
           
     response = requests.get(f"{NUMBERS_API_URL}/{number}/math?json")
     data = response.json() if response.status_code == 200 else {"error": "Could not fetch fact"}
-    text = f"{data.get('text', 'No text key found')} //gotten from the numbers API"
+    text = data.get('text', 'No text key found')
 
     
     is_prime = sympy.isprime(number)
@@ -48,9 +48,9 @@ def mth_num(number:int):
         new_list.append(x)
 
     if (sum(new_list)== number) & (number % 2 == 0):
-        property = ["Armstrong","even"]
+        property = ["armstrong","even"]
     elif (sum(new_list)== number) & (number % 2 != 0):
-        property = ["Armstrong","odd"]
+        property = ["armstrong","odd"]
     elif (sum(new_list)!= number) & (number % 2 == 0):
         property = ["even"]
     elif (sum(new_list)!= number) & (number % 2 != 0):
