@@ -21,12 +21,12 @@ app.add_middleware(
 async def classify_number(request: Request):
     number_str = request.query_params.get('number')
 
-    # Validate the input
+# Validate the input
     if not number_str:
         # No number provided
         return JSONResponse(
             status_code=400,
-            content={"number": "alphabet", "error": True},
+            content={"number": None, "error": True},
         )
 
     try:
@@ -35,14 +35,14 @@ async def classify_number(request: Request):
         # Input is not an integer
         return JSONResponse(
             status_code=400,
-            content={"number": "alphabet", "error": True},
+            content={"number": number_str, "error": True},
         )
 
     if number < 0:
         # Negative number provided
         return JSONResponse(
             status_code=400,
-            content={"number": "negative", "error": True},
+            content={"number": number, "error": True},
         )
 
     # Now process the valid positive integer
@@ -56,10 +56,11 @@ async def classify_number(request: Request):
     is_armstrong = sum_of_powers == number
 
     # Determine properties
-    properties = []
     if is_armstrong:
-        properties.append("armstrong")
-    properties.append("even" if number % 2 == 0 else "odd")
+        properties = ["armstrong", "even" if number % 2 == 0 else "odd"]
+    else:
+        properties = ["even" if number % 2 == 0 else "odd"]
+
 
     # Fetch a fun fact from Numbers API
     response = requests.get(f"{NUMBERS_API_URL}/{number}/math?json")
