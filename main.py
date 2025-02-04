@@ -35,11 +35,11 @@ def mth_num(number:int):
 
     is_perfect = sympy.is_perfect(number)
 
-    
+
     num_str=str(abs(number))
     num_list = list(map(int,num_str))
     digit_sum= sum(num_list)
-    
+
 
     # # Armstrong
     n= len(num_list)
@@ -48,14 +48,14 @@ def mth_num(number:int):
     for i in num_list:
         x = i**n
         new_list.append(x)
-
-    if (sum(new_list)== number) & (number % 2 == 0):
+    numbers = abs(number)
+    if (sum(new_list)== numbers) & (numbers % 2 == 0):
         property = ["armstrong","even"]
-    elif (sum(new_list)== number) & (number % 2 != 0):
+    elif (sum(new_list)== numbers) & (numbers % 2 != 0):
         property = ["armstrong","odd"]
-    elif (sum(new_list)!= number) & (number % 2 == 0):
+    elif (sum(new_list)!= numbers) & (numbers % 2 == 0):
         property = ["even"]
-    elif (sum(new_list)!= number) & (number % 2 != 0):
+    elif (sum(new_list)!= numbers) & (numbers % 2 != 0):
         property = ["odd"]
 
     return { "number": number,
