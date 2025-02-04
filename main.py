@@ -12,7 +12,7 @@ app = FastAPI()
 NUMBERS_API_URL = "http://numbersapi.com"
 
 
-@app.get ("/api/classify-number/")
+@app.get ("/api/classify-number")
 
 def mth_num(number:int):
 
